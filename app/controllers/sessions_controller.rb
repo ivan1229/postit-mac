@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
     user = User.where(username: params[:username]).first
 
     if user && user.authenticate(params[:password])
-      sessions[:user_id] = user.id
-      flassh[:notice] = "Welcome, you've logged in."
+      session[:user_id] = user.id
+      flash[:notice] = "Welcome, you've logged in."
       redirect_to root_path
 
     else
@@ -18,9 +18,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    sessions[:user_id] = nil
+    session[:user_id] = nil
     flash[:notice] = "You've logged out"
     redirect_to root_path
   end
-
 end
