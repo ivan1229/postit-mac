@@ -17,8 +17,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.creator = current_user
+    if @post = Post.new(post_params)
+      @post.creator = current_user
 
       flash[:notice] = "Your post was created."
       redirect_to posts_path
@@ -35,6 +35,7 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       render :edit
+    end
   end
 
   def post_params
