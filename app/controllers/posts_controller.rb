@@ -37,6 +37,10 @@ class PostsController < ApplicationController
       render :edit
     end
   end
+  
+  def vote
+    binding.pry
+  end
 
   def post_params
     params.require(:post).permit(:title, :url, :description, category_ids: [])
