@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by slug: params[:id]
   end
 
   def update
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :time_zone)
   end
 
   def set_user
@@ -50,5 +50,4 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
-
 end
